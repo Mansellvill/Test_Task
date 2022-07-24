@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
-using System.Collections.Generic;
 using CommandLine;
-
+using Newtonsoft.Json;
 
 namespace TestTask
 {
@@ -26,8 +25,15 @@ namespace TestTask
     {
         private const string FilePath = "Users.json";
 
+        /*private static string _filePath;
+
+        public UserHandler(string filePatch)
+        {
+            _filePath = filePatch;
+        }
+    */
         FileManager fileManager = new FileManager(FilePath);
-        ChekArguments chekArguments = new ChekArguments();
+        CheckArguments checkArguments = new CheckArguments();
 
         public void AddUser(string firstName, string lastName, string salary) 
         {
@@ -35,93 +41,121 @@ namespace TestTask
             var usersList = fileManager.ReadJsonFile();
             var lastUser = usersList.LastOrDefault();
 
-            user.Id = lastUser == null ? 0 : lastUser.Id + 1;
-            user.FirstName = chekArguments.AddNamesUser(firstName, user.FirstName);
-            user.LastName = chekArguments.AddNamesUser(lastName, user.LastName);
-            user.SalaryPerHour = chekArguments.AddSalaryUser(salary, user.SalaryPerHour);
+            user.Id = lastUser == null? 0 : lastUser.Id + 1;
+            user.FirstName = checkArguments.GetAddNameUser(firstName);
+            user.LastName = checkArguments.GetAddNameUser(lastName);
+            user.SalaryPerHour = checkArguments.GetAddSalaryUser(salary);
 
             usersList.Add(user);
 
-            var jsonFile = JsonConvert.SerializeObject(usersList);
-            fileManager.WrriteJsonFile(jsonFile);
+            fileManager.WriteJsonFile(usersList);
 
-            Console.WriteLine($"Добавлен сотрудник с id: {user.Id}");
-            GetUser(user.Id);
+            Console.WriteLine($"Добавлен сотрудник с id: {user.Id}.");
+            GetUserInfo(user.Id);
         }
 
-        public void UpadateUser(int id, string firstName, string lastName, string salary)
+        public void UpdateUser(int id, string firstName, string lastName, string salary)
         {
             var usersList = fileManager.ReadJsonFile();
+
+            if (usersList.Count == 0)
+            {
+                Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+            }
+
             var user = usersList.FirstOrDefault(user => user.Id == id);
-    
+
             if (user == null)
             {
                 Console.WriteLine($"Сотрудник с id {id} не найден.");
             }
             else
             {
-                user.FirstName = chekArguments.AddNamesUser(firstName, user.FirstName);
-                user.LastName = chekArguments.AddNamesUser(lastName, user.LastName);
-                user.SalaryPerHour = chekArguments.AddSalaryUser(salary, user.SalaryPerHour);
+                user.FirstName = checkArguments.GetUpdateNameUser(firstName, user.FirstName);
+                user.LastName = checkArguments.GetUpdateNameUser(lastName, user.LastName);
+                user.SalaryPerHour = checkArguments.GetUpdateSalaryUser(salary, user.SalaryPerHour);
 
-                var jsonFile = JsonConvert.SerializeObject(usersList);
-                fileManager.WrriteJsonFile(jsonFile);
+                fileManager.WriteJsonFile(usersList);
 
                 Console.WriteLine($"Изменен сотрудник с id {id}:");
-                GetUser(user.Id);
+                GetUserInfo(user.Id);
             }
-            
-
         }
 
-        public void GetUser(int id)
+        public void GetUserInfo(int id)
         {
-            var user = fileManager.ReadJsonFile().FirstOrDefault(user => user.Id == id);
+            var usersList = fileManager.ReadJsonFile();
+
+            if (usersList.Count == 0)
+            {
+                Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+            }
+
+            var user = usersList.FirstOrDefault(user => user.Id == id);
 
             if (user == null)
             {
                 Console.WriteLine($"Сотрудник с id {id} не найден.");
             }
-            else
-            {
-                Console.WriteLine($"Id = {user.Id}, FirstName = {user.FirstName}, LastName = {user.LastName}, SalaryPerHour = {user.SalaryPerHour}");
-            }
-            
+
+            Console.WriteLine($"Id = {user.Id}, FirstName = {user.FirstName}, LastName = {user.LastName}," +
+                              $" SalaryPerHour = {user.SalaryPerHour}");
         }
 
         public void DeleteUser(int id)
         {
             var usersList = fileManager.ReadJsonFile();
+
+            if (usersList.Count == 0)
+            {
+                Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+            }
+
             var user = usersList.FirstOrDefault(user => user.Id == id);
 
             if (user == null)
             {
                 Console.WriteLine($"Сотрудник с id {id} не найден.");
             }
+            usersList.Remove(user);
 
-            else 
-            {
-                usersList.Remove(user);
-                var jsonFile = JsonConvert.SerializeObject(usersList);
-                fileManager.WrriteJsonFile(jsonFile);
-                Console.WriteLine($"Сотрудник c id: {id} удален!");
-            }  
+            fileManager.WriteJsonFile(usersList);
+
+            Console.WriteLine($"Сотрудник c id: {id} удален!");
         }
 
         public void GetAllUser()
         {
-            foreach (var user in fileManager.ReadJsonFile())
+            var usersList = fileManager.ReadJsonFile();
+
+            if (usersList.Count == 0)
             {
-                Console.WriteLine($"Id = {user.Id}, FirstName = {user.FirstName}, LastName = {user.LastName}, SalaryPerHour = {user.SalaryPerHour}");
+                Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+            }
+
+            foreach (var user in usersList)
+            {
+                Console.WriteLine($"Id = {user.Id}, FirstName = {user.FirstName}, LastName = {user.LastName}," +
+                                  $" SalaryPerHour = {user.SalaryPerHour}");
             }
         }
     }
 
-    public class ChekArguments
+    public class CheckArguments
     {
-        public string AddNamesUser(String newValue, String currentValue)
+        public string GetAddNameUser(string newValue)
         {
-            if (CheckValues(newValue, currentValue))
+            if (string.IsNullOrEmpty(newValue))
+            {
+                newValue = string.Empty;
+            }
+
+            return newValue;
+        }
+
+        public string GetUpdateNameUser(string newValue, string currentValue)
+        {
+            if (!string.IsNullOrEmpty(newValue) && !string.Equals(newValue, currentValue))
             {
                 currentValue = newValue;
             }
@@ -129,28 +163,34 @@ namespace TestTask
             return currentValue;
         }
 
-        public bool CheckValues(string newValue, string curentValue)
+        public decimal GetAddSalaryUser(string newSalary)
         {
-            return !String.IsNullOrEmpty(newValue) && !String.Equals(newValue, curentValue);
+            decimal salary = decimal.Zero;
+
+            if (decimal.TryParse(newSalary, out var value) && !string.IsNullOrEmpty(newSalary))
+            {
+                salary = value;
+            }
+            return salary;
         }
 
-        public decimal AddSalaryUser(string newSalary, decimal currnetSalary)
+        public decimal GetUpdateSalaryUser(string newSalary, decimal currentSalary)
         {
-            if (Decimal.TryParse(newSalary, out var value) && !String.IsNullOrEmpty(newSalary))
+            if (decimal.TryParse(newSalary, out var value) && !string.IsNullOrEmpty(newSalary))
             {
-                if (value != currnetSalary)
+                if (value != currentSalary)
                 {
-                    currnetSalary = value;
+                    currentSalary = value;
                 }
             }
-
-            return currnetSalary;
+            return currentSalary;
         }
     }
+    
 
     public class FileManager
     {
-        private string _filePath;
+        private readonly string _filePath;
 
         public FileManager (string filePatch)
         {
@@ -162,6 +202,10 @@ namespace TestTask
             try
             {
                 List<User> readjson = JsonConvert.DeserializeObject<List<User>>(File.ReadAllText(_filePath));
+                if (readjson == null)
+                {
+                    readjson = new List<User>();
+                }
                 return readjson;
             }
             catch (Exception ex)
@@ -171,10 +215,11 @@ namespace TestTask
             }
         }
 
-        public void WrriteJsonFile(string json)
+        public void WriteJsonFile(List<User> usersList)
         {
             try
             {
+                var json = JsonConvert.SerializeObject(usersList.ToArray(), Formatting.Indented);
                 File.WriteAllText(_filePath, json);
             }
             catch (Exception ex)
@@ -182,7 +227,6 @@ namespace TestTask
                 Console.WriteLine(ex.Message);
             }
         }
-
     }
 
     public class CommandLineOptions
@@ -205,11 +249,14 @@ namespace TestTask
 
     class Program
     {
+        //private const string _FilePath = "Users.json";
+        
         private static UserHandler _userHandler;
+
         static void Main(string[] args)
         {
             try
-            {
+            {      
                 _userHandler = new UserHandler();
                 var parserResults = Parser.Default.ParseArguments<CommandLineOptions>(args);
                 parserResults.WithParsed(options => Run(options));
@@ -230,11 +277,11 @@ namespace TestTask
                     break;
 
                 case "update": // update --Id *вводим нужный id*             
-                    _userHandler.UpadateUser(options.ID, options.FristName, options.LastName, options.Salary);
+                    _userHandler.UpdateUser(options.ID, options.FristName, options.LastName, options.Salary);
                     break;
 
                 case "get": // get --Id *значение*                 
-                    _userHandler.GetUser(options.ID);
+                    _userHandler.GetUserInfo(options.ID);
                     break;
 
                 case "delete": //delete --Id *значение* 

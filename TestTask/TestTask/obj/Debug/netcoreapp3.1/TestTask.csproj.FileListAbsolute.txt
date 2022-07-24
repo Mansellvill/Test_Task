@@ -14,3 +14,36 @@ C:\Users\Mansell\source\repos\TestTask\TestTask\bin\Debug\netcoreapp3.1\Newtonso
 C:\Users\Mansell\source\repos\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.csproj.CopyComplete
 C:\Users\Mansell\source\repos\TestTask\TestTask\bin\Debug\netcoreapp3.1\CommandLine.dll
 C:\Users\Mansell\source\repos\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.csproj.CoreCompileInputs.cache
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\TestTask.exe
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\TestTask.deps.json
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\TestTask.runtimeconfig.json
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\TestTask.runtimeconfig.dev.json
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\TestTask.dll
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\TestTask.pdb
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\CommandLine.dll
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.csproj.AssemblyReference.cache
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.AssemblyInfoInputs.cache
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.AssemblyInfo.cs
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.csproj.CoreCompileInputs.cache
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.csproj.CopyComplete
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.dll
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.pdb
+C:\Users\seven\OneDrive\Рабочий стол\TestTask\TestTask\obj\Debug\netcoreapp3.1\TestTask.genruntimeconfig.cache
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\TestTask.exe
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\TestTask.deps.json
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\TestTask.runtimeconfig.json
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\TestTask.runtimeconfig.dev.json
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\TestTask.dll
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\TestTask.pdb
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\CommandLine.dll
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.csprojAssemblyReference.cache
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.csproj.CoreCompileInputs.cache
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.AssemblyInfoInputs.cache
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.AssemblyInfo.cs
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.csproj.CopyComplete
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.dll
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.pdb
+C:\Users\Mansell\source\repos\TestTask 23.07.2022\TestTask\obj\Debug\netcoreapp3.1\TestTask.genruntimeconfig.cache

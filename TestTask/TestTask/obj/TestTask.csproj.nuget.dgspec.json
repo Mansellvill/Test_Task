@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask\\TestTask.csproj": {}
+    "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask\\TestTask.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask\\TestTask.csproj": {
+    "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask\\TestTask.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask\\TestTask.csproj",
+        "projectUniqueName": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask\\TestTask.csproj",
         "projectName": "TestTask",
-        "projectPath": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask\\TestTask.csproj",
+        "projectPath": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask\\TestTask.csproj",
         "packagesPath": "C:\\Users\\Mansell\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask\\obj\\",
+        "outputPath": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mansell\\AppData\\Roaming\\NuGet\\NuGet.Config",

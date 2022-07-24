@@ -3889,11 +3889,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask.Tests\\TestTask.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask.Tests\\TestTask.Tests.csproj",
       "projectName": "TestTask.Tests",
-      "projectPath": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask.Tests\\TestTask.Tests.csproj",
+      "projectPath": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask.Tests\\TestTask.Tests.csproj",
       "packagesPath": "C:\\Users\\Mansell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask.Tests\\obj\\",
+      "outputPath": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Mansell\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3909,8 +3909,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask\\TestTask.csproj": {
-              "projectPath": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask\\TestTask.csproj"
+            "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask\\TestTask.csproj": {
+              "projectPath": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask\\TestTask.csproj"
             }
           }
         }
