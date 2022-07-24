@@ -23,44 +23,54 @@ namespace TestTask
 
     public class UserHandler
     {
-        private const string FilePath = "Users.json";
 
-        /*private static string _filePath;
-
+        private readonly FileManager _fileManager;
+        private readonly CheckArguments _checkArguments;
         public UserHandler(string filePatch)
         {
-            _filePath = filePatch;
+            _fileManager = new FileManager(filePatch);
+            _checkArguments = new CheckArguments();
         }
-    */
-        FileManager fileManager = new FileManager(FilePath);
-        CheckArguments checkArguments = new CheckArguments();
 
-        public void AddUser(string firstName, string lastName, string salary) 
+        public void AddUser(string firstName, string lastName, string salary)
         {
             var user = new User();
-            var usersList = fileManager.ReadJsonFile();
+            var usersList = _fileManager.ReadJsonFile();
             var lastUser = usersList.LastOrDefault();
 
-            user.Id = lastUser == null? 0 : lastUser.Id + 1;
-            user.FirstName = checkArguments.GetAddNameUser(firstName);
-            user.LastName = checkArguments.GetAddNameUser(lastName);
-            user.SalaryPerHour = checkArguments.GetAddSalaryUser(salary);
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(salary))
+            {
+                Console.WriteLine("Одно из полей не заполненно!");
+                return;
+            }
+
+            user.Id = lastUser == null ? 0 : lastUser.Id + 1;
+            user.FirstName = _checkArguments.GetAddNameUser(firstName);
+            user.LastName = _checkArguments.GetAddNameUser(lastName);
+            user.SalaryPerHour = _checkArguments.GetAddSalaryUser(salary);
 
             usersList.Add(user);
 
-            fileManager.WriteJsonFile(usersList);
+            _fileManager.WriteJsonFile(usersList);
 
             Console.WriteLine($"Добавлен сотрудник с id: {user.Id}.");
             GetUserInfo(user.Id);
         }
 
-        public void UpdateUser(int id, string firstName, string lastName, string salary)
+        public void UpdateUser(int? id, string firstName, string lastName, string salary)
         {
-            var usersList = fileManager.ReadJsonFile();
+            var usersList = _fileManager.ReadJsonFile();
 
             if (usersList.Count == 0)
             {
                 Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+                return;
+            }
+
+            if (id == null)
+            {
+                Console.WriteLine("Укажите id сотрудника!");
+                return;
             }
 
             var user = usersList.FirstOrDefault(user => user.Id == id);
@@ -68,27 +78,35 @@ namespace TestTask
             if (user == null)
             {
                 Console.WriteLine($"Сотрудник с id {id} не найден.");
+                return;
             }
             else
             {
-                user.FirstName = checkArguments.GetUpdateNameUser(firstName, user.FirstName);
-                user.LastName = checkArguments.GetUpdateNameUser(lastName, user.LastName);
-                user.SalaryPerHour = checkArguments.GetUpdateSalaryUser(salary, user.SalaryPerHour);
+                user.FirstName = _checkArguments.GetUpdateNameUser(firstName, user.FirstName);
+                user.LastName = _checkArguments.GetUpdateNameUser(lastName, user.LastName);
+                user.SalaryPerHour = _checkArguments.GetUpdateSalaryUser(salary, user.SalaryPerHour);
 
-                fileManager.WriteJsonFile(usersList);
+                _fileManager.WriteJsonFile(usersList);
 
                 Console.WriteLine($"Изменен сотрудник с id {id}:");
                 GetUserInfo(user.Id);
             }
         }
 
-        public void GetUserInfo(int id)
+        public void GetUserInfo(int? id)
         {
-            var usersList = fileManager.ReadJsonFile();
+            var usersList = _fileManager.ReadJsonFile();
 
             if (usersList.Count == 0)
             {
                 Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+                return;
+            }
+
+            if (id == null)
+            {
+                Console.WriteLine("Укажите id сотрудника!");
+                return;
             }
 
             var user = usersList.FirstOrDefault(user => user.Id == id);
@@ -96,19 +114,27 @@ namespace TestTask
             if (user == null)
             {
                 Console.WriteLine($"Сотрудник с id {id} не найден.");
+                return;
             }
 
             Console.WriteLine($"Id = {user.Id}, FirstName = {user.FirstName}, LastName = {user.LastName}," +
                               $" SalaryPerHour = {user.SalaryPerHour}");
         }
 
-        public void DeleteUser(int id)
+        public void DeleteUser(int? id)
         {
-            var usersList = fileManager.ReadJsonFile();
+            var usersList = _fileManager.ReadJsonFile();
 
             if (usersList.Count == 0)
             {
                 Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+                return;
+            }
+
+            if (id == null)
+            {
+                Console.WriteLine("Укажите id сотрудника!");
+                return;
             }
 
             var user = usersList.FirstOrDefault(user => user.Id == id);
@@ -116,21 +142,23 @@ namespace TestTask
             if (user == null)
             {
                 Console.WriteLine($"Сотрудник с id {id} не найден.");
+                return;
             }
             usersList.Remove(user);
 
-            fileManager.WriteJsonFile(usersList);
+            _fileManager.WriteJsonFile(usersList);
 
             Console.WriteLine($"Сотрудник c id: {id} удален!");
         }
 
         public void GetAllUser()
         {
-            var usersList = fileManager.ReadJsonFile();
+            var usersList = _fileManager.ReadJsonFile();
 
             if (usersList.Count == 0)
             {
                 Console.WriteLine("Список сотрудников пуст, добавьте сотрудника!");
+                return;
             }
 
             foreach (var user in usersList)
@@ -186,13 +214,12 @@ namespace TestTask
             return currentSalary;
         }
     }
-    
 
     public class FileManager
     {
         private readonly string _filePath;
 
-        public FileManager (string filePatch)
+        public FileManager(string filePatch)
         {
             _filePath = filePatch;
         }
@@ -234,8 +261,8 @@ namespace TestTask
         [Value(index: 0, Required = true, HelpText = "Введите команду для выоплнения")]
         public string Command { get; set; }
 
-        [Option(longName: "Id", Required = false, HelpText = "id сотрудника", Default = 0)]
-        public int ID { get; set; }
+        [Option(longName: "Id", Required = false, HelpText = "id сотрудника")]
+        public int? ID { get; set; }
 
         [Option(longName: "FirstName", Required = false, HelpText = "Имя сотрудника", Default = "")]
         public string FristName { get; set; }
@@ -249,15 +276,15 @@ namespace TestTask
 
     class Program
     {
-        //private const string _FilePath = "Users.json";
-        
+        private const string _FilePath = "Users.json";
+
         private static UserHandler _userHandler;
 
         static void Main(string[] args)
         {
             try
-            {      
-                _userHandler = new UserHandler();
+            {
+                _userHandler = new UserHandler(_FilePath);
                 var parserResults = Parser.Default.ParseArguments<CommandLineOptions>(args);
                 parserResults.WithParsed(options => Run(options));
                 Console.ReadKey();

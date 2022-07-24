@@ -9,13 +9,13 @@ namespace TestTask.Tests
         private FileManager _fileManager;
         private CheckArguments _checkArguments;
 
-        private const string TestFilePath = "Users.json";
+        private const string TestFilePath = "TestUsers.json";
 
         [SetUp]
         public void Setup()
         {
+            _userHandler = new UserHandler(TestFilePath);
             _fileManager = new FileManager(TestFilePath);
-            _userHandler = new UserHandler();
             _checkArguments = new CheckArguments();
         }
 
@@ -48,9 +48,9 @@ namespace TestTask.Tests
         [Test]
         public void AddNullUserTest()
         {
-            string firstName = null;
-            string lastName = null;
-            string salary = null;
+            string firstName = " ";
+            string lastName = " ";
+            string salary = " ";
 
             var bedoreAddUsersList = _fileManager.ReadJsonFile();
 
@@ -66,8 +66,8 @@ namespace TestTask.Tests
 
             var lastUser = afterAddusersList.LastOrDefault();
 
-            Assert.AreEqual(lastUser.FirstName, string.Empty);
-            Assert.AreEqual(lastUser.LastName, string.Empty);
+            Assert.AreEqual(lastUser.FirstName, firstName);
+            Assert.AreEqual(lastUser.LastName, lastName);
             Assert.AreEqual(lastUser.SalaryPerHour, decimal.Zero);
         }
 

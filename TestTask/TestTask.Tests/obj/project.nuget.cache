@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OMpuF4lJM23SdoefpeUimTLBD3c5qFj2UIFvjp7Ug0OPWuqBDzxRoaQ54ZJBrUeUJ00kbHhWi5vGdGVPQQQ2uA==",
+  "dgSpecHash": "Ybif7b0H3kWgqiu43fdRQVryAT2OFSRGhsfILucOzvgq3e8uil4YY5XNd6bzeYMcUnCaZUCBVjtSklAlN6D+pg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Mansell\\source\\repos\\TestTask 23.07.2022\\TestTask.Tests\\TestTask.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Mansell\\source\\repos\\TestTask\\TestTask.Tests\\TestTask.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mansell\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512",
     "C:\\Users\\Mansell\\.nuget\\packages\\microsoft.codecoverage\\16.4.0\\microsoft.codecoverage.16.4.0.nupkg.sha512",
